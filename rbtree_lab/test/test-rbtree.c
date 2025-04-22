@@ -104,6 +104,8 @@ static int comp(const void *p1, const void *p2)
 // min/max should return the min/max value of the tree
 void test_minmax(key_t *arr, const size_t n)
 {
+  printf("test_minmax\n");
+  fflush(stdout);
   // null array is not allowed
   assert(n > 0 && arr != NULL);
 
@@ -115,7 +117,6 @@ void test_minmax(key_t *arr, const size_t n)
 #ifdef SENTINEL
   assert(t->root != t->nil);
 #endif
-
   qsort((void *)arr, n, sizeof(key_t), comp);
   node_t *p = rbtree_min(t);
   assert(p != NULL);
@@ -418,7 +419,7 @@ int main(void)
   test_insert_single(1024);
   test_find_single(512, 1024);
   test_erase_root(128);
-  test_find_erase_fixed();
+   test_find_erase_fixed();
   test_minmax_suite();
   test_to_array_suite();
   test_distinct_values();
@@ -427,3 +428,4 @@ int main(void)
   test_find_erase_rand(10000, 17);
   printf("Passed all tests!\n");
 }
+ 
